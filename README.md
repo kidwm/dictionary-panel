@@ -1,4 +1,4 @@
 dictionary-panel
 ================
 
-A firefox extension that display the selection text query result in a panel.
+A firefox extension that display the dictionary queried result of selection text in a panel.
