@@ -2,7 +2,7 @@
     "name": "dictionary-panel", 
     "license": "MPL 2.0", 
     "author": "kidwm", 
-    "version": "0.2", 
+    "version": "0.2.1", 
     "fullName": "Dictionary Panel", 
     "id": "jid1-efsrvlFOR8ZWKw", 
     "description": "Display the dictionary queried result of selection text in a panel."
