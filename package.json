@@ -2,8 +2,29 @@
     "name": "dictionary-panel", 
     "license": "MPL 2.0", 
     "author": "kidwm", 
-    "version": "0.2.1", 
+    "version": "0.3", 
     "fullName": "Dictionary Panel", 
     "id": "jid1-efsrvlFOR8ZWKw", 
-    "description": "Display the dictionary queried result of selection text in a panel."
+    "description": "Display the dictionary queried result of selection text in a panel.",
+    "preferences": [{
+        "name": "alignment",
+        "title": "Alignment",
+        "description": "The Panel Position",
+        "type": "radio",
+        "value": "C",
+        "options": [
+        {
+            "value": "L",
+            "label": "Left"
+        },
+        {
+            "value": "C",
+            "label": "Center"
+        },
+        {
+            "value": "R",
+            "label": "Right"
+        }
+        ]
+    }]
 }
