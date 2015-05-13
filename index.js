@@ -12,14 +12,17 @@ const dictionaries = [
 	{
 		id: 'kimo',
 		name: '奇摩字典',
-		url: 'http://tw.dictionary.yahoo.com/dictionary?p=',
-		append: ''
+		url: (query) => `http://tw.dictionary.yahoo.com/dictionary?p=${query}`
+	},
+	{
+		id: 'moedict',
+		name: '萌典',
+		url: (query) => `http://www.moedict.tw/${query}`
 	},
 	{
 		id: 'goo',
 		name: 'goo辞書',
-		url: 'http://dictionary.goo.ne.jp/srch/all/',
-		append: '/m0u/'
+		url: (query) => `http://dictionary.goo.ne.jp/srch/all/${query}/m0u/`
 	}
 ];
 
@@ -45,7 +48,7 @@ function setpanel() {
 }
 setpanel();
 
-var items = {};
+var items = [];
 
 exports.main = function(options, callbacks) {
 
@@ -56,19 +59,20 @@ exports.main = function(options, callbacks) {
 			// Show this item when a selection exists.
 			context: contextMenu.SelectionContext(),
 			// When this item is clicked, post a message back with the selection
-			contentScript: 'self.on("click", function () {' +
-				           '  var text = window.getSelection().toString();' +
-				           '  self.postMessage(text);' +
-				           '});' +
-				           'self.on("context", function () {' +
-				           '  var text = window.getSelection().toString();' +
-				           '  if (text.length > 20)' +
-				           '    text = text.substr(0, 20) + "...";' +
-				           '  return "' + dictionary.name + ': " + text;' +
-				           '});',
+			contentScript:
+				`self.on("click", function () {
+					var text = window.getSelection().toString();
+					self.postMessage(text);
+				});
+				self.on("context", function () {
+					var text = window.getSelection().toString();
+					if (text.length > 20)
+						text = text.substr(0, 20) + "...";
+						return "${dictionary.name}: " + text;
+				});`,
 			// When we receive a message, look up the item
 			onMessage: function (item) {
-				panel.contentURL = dictionary.url + item + dictionary.append;
+				panel.contentURL = dictionary.url(encodeURIComponent(item));
 				panel.show();
 			}
 		});
