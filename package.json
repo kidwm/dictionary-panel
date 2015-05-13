@@ -26,5 +26,23 @@
             "label": "Right"
         }
         ]
-    }]
+    },{
+		"name": "kimo",
+		"title": "奇摩字典",
+		"description": "Enable 奇摩字典?",
+		"type": "bool",
+		"value": true
+	},{
+		"name": "moedict",
+		"title": "萌典",
+		"description": "Enable 萌典?",
+		"type": "bool",
+		"value": true
+	},{
+		"name": "goo",
+		"title": "goo辞書",
+		"description": "Enable goo辞書?",
+		"type": "bool",
+		"value": true
+	}]
 }
