@@ -2,7 +2,7 @@ var self = require("sdk/self");
 var contextMenu = require("sdk/context-menu");
 var preference = require('sdk/simple-prefs');
 var utils = require('sdk/window/utils');
-var alignment = preference.prefs['alignment'];
+var position = preference.prefs['position'];
 const data = self.data;
 const positions = {
     C: null,
@@ -31,10 +31,6 @@ const dictionaries = [
 		url: (query) => `https://translate.google.com/#en/zh-TW/${query}`
 	}
 ];
-
-preference.on("alignment", function() {
-    alignment = preference.prefs['alignment'];
-});
 
 var panel = require("sdk/panel").Panel({
 	contentURL: data.url("loading.html"),
@@ -67,7 +63,7 @@ var setMenu = function(dictionary) {
 			let window = utils.getMostRecentBrowserWindow();
 			panel.contentURL = dictionary.url(encodeURIComponent(item));
 			panel.show({
-				position: positions[alignment],
+				position: positions[preference.prefs['position']],
 				width: parseInt(window.innerWidth / 2, 10),
 				height: parseInt(window.innerHeight / 2, 10)
 			});
