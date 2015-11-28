@@ -1,6 +1,7 @@
 var self = require("sdk/self");
 var contextMenu = require("sdk/context-menu");
 var preference = require('sdk/simple-prefs');
+var utils = require('sdk/window/utils');
 var alignment = preference.prefs['alignment'];
 const data = self.data;
 const positions = {
@@ -31,27 +32,16 @@ const dictionaries = [
 	}
 ];
 
-var position = positions[alignment];
-
 preference.on("alignment", function() {
     alignment = preference.prefs['alignment'];
-    position = positions[alignment];
-    setpanel();
 });
 
-var panel;
-function setpanel() {
-    panel = require("sdk/panel").Panel({
-        width: 680,
-        height: 550,
-        position: position,
-        contentURL: data.url("loading.html"),
-        onHide: function() {
-            panel.contentURL = data.url("loading.html");
-        }
-    });
-}
-setpanel();
+var panel = require("sdk/panel").Panel({
+	contentURL: data.url("loading.html"),
+	onHide: function() {
+		panel.contentURL = data.url("loading.html");
+	}
+});
 
 var items = [];
 var setMenu = function(dictionary) {
@@ -74,8 +64,13 @@ var setMenu = function(dictionary) {
 			});`,
 		// When we receive a message, look up the item
 		onMessage: function (item) {
+			let window = utils.getMostRecentBrowserWindow();
 			panel.contentURL = dictionary.url(encodeURIComponent(item));
-			panel.show();
+			panel.show({
+				position: positions[alignment],
+				width: parseInt(window.innerWidth / 2, 10),
+				height: parseInt(window.innerHeight / 2, 10)
+			});
 		}
 	});
 };
