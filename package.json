@@ -44,5 +44,11 @@
 		"description": "Enable goo辞書?",
 		"type": "bool",
 		"value": true
+	},{
+		"name": "google",
+		"title": "Google Translate",
+		"description": "Enable Google Translate?",
+		"type": "bool",
+		"value": true
 	}]
 }

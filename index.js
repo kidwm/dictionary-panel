@@ -23,6 +23,11 @@ const dictionaries = [
 		id: 'goo',
 		name: 'goo辞書',
 		url: (query) => `http://dictionary.goo.ne.jp/srch/all/${query}/m0u/`
+	},
+	{
+		id: 'google',
+		name: 'Google Translate',
+		url: (query) => `https://translate.google.com/#en/zh-TW/${query}`
 	}
 ];
 
@@ -88,4 +93,3 @@ exports.main = function(options, callbacks) {
 	});
 
 };
-
