@@ -1,13 +1,19 @@
 {
 	"manifest_version": 2,
 	"name": "Dictionary Panel",
-	"version": "0.2.1",
+	"version": "1.0.0",
 	"description": "A extension that display the dictionary queried result of selection text in a panel.",
 	"permissions": [
-		"contextMenus"
+		"menus"
 	],
 	"background": {
-		"scripts": ["lib/chrome.js"]
+		"scripts": ["background.js"]
+	},
+	"page_action": {},
+	"browser_specific_settings": {
+		"gecko": {
+			"id": "jid1-efsrvlFOR8ZWKw@jetpack",
+			"strict_min_version": "57.0"
+		}
 	}
 }
-
